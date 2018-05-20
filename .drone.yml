@@ -1,0 +1,11 @@
+workspace:
+  base: /app
+  path: app/
+
+pipeline:
+  publish_docker:
+     image: plugins/docker
+     repo: sokoow/drone-kubectl-helm-clientcert
+     secrets: [ docker_username, docker_password ]
+     tags: [ 0.0.1, latest ]
+
