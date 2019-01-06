@@ -37,14 +37,13 @@ if [[ ! -z ${KUBERNETES__CA_CERT} ]]; then
   kubectl config set-cluster default --server=${KUBERNETES_SERVER} --certificate-authority=ca.crt
 fi
 
-
-kubectl config set-credentials default --certificate-authority=ca.pem --client-key=client-key.pem --client-certificate=client-cert.pem  
+kubectl config set-credentials default --certificate-authority=ca.pem --client-key=client-key.pem --client-certificate=client-cert.pem
 kubectl config set-context default --cluster=default --user=default
 kubectl config use-context default
 
 # Run kubectl command
 if [[ ! -z ${PLUGIN_KUBECTL} ]]; then
-  kubectl ${PLUGIN_KUBECTL}
+  kubectl --insecure-skip-tls-verify=true ${PLUGIN_KUBECTL}
 fi
 
 # Run helm command
