@@ -2,7 +2,7 @@ FROM alpine
 LABEL maintainer="Alen Komljen <akomljen.com>"
 
 ENV HELM_VERSION="v2.8.2"
-ENV KUBECTL_VERSION="v1.9.3"
+ENV KUBECTL_VERSION="v1.13.3"
 
 RUN \
   apk add --update ca-certificates && \
