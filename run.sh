@@ -23,6 +23,11 @@ if [[ ! -z ${KUBECONFIG} ]]; then
   echo ${KUBECONFIG} | base64 -d > /root/.kube/config
 fi
 
+if [[ ! -z ${KUBECONFIG_URL} ]]; then
+  mkdir -p /root/.kube
+  wget ${KUBECONFIG_URL} -O /root/.kube/config
+fi
+
 if [[ ! -z ${KUBERNETES_CA_CERT} ]]; then
   echo ${KUBERNETES_CA_CERT} | base64 -d >ca.pem
   kubectl config set-cluster default --server=${KUBERNETES_SERVER} --certificate-authority=ca.pem
